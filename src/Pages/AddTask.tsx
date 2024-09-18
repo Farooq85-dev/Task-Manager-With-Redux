@@ -8,12 +8,15 @@ function AddTaskPage() {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const taskAutoId = Math.random();
 
   const handleAddTask = (event: FormEvent) => {
     event?.preventDefault();
+    if (!taskName) return alert("Pleae add task first!");
+
     dispatch(
       addTodo({
-        id: tasks[tasks.length - 1].id + 1,
+        id: Number(taskAutoId),
         taskName,
       })
     );
